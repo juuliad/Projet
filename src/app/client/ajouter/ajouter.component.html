@@ -9,31 +9,51 @@
 
   <nav>
     <ul>
-        <li><a href="..\accueil">Accueil</a></li>
-        <li><a href="..\connexion">Se connecter</a></li>
-        <li><a href="..\inscription">S'inscrire</a></li>
-        <li><a href="..\ajouter">Ajouter une note de frais</a></li>
-        <li><a href="..\consulter">Mes notes de frais</a></li>
+        <li><a routerLink="/accueil">Accueil</a></li>
+        <li><a routerLink="/connexion">Se connecter</a></li>
+        <li><a routerLink="/inscription">S'inscrire</a></li>
+        <li><a routerLink="/ajouter">Ajouter une note de frais</a></li>
+        <li><a routerLink="/consulter">Mes notes de frais</a></li>
     </ul>
-  </nav>
-
+</nav>
 
 <h1>Ajouter une note de frais</h1>
 
-<br>
-
-<form id="fraisForm">
+<form [formGroup]="fraisForm" (ngSubmit)="onSubmit()">
     <label for="libelle">Libellé :</label>
-    <input type="text" id="libelle" name="libelle" required><br>
+    <input id="libelle" formControlName="libelle" required><br>
 
     <label for="montant">Montant :</label>
-    <input type="number" id="montant" name="montant" required><br>
+    <input id="montant" formControlName="montant" type="number" required><br>
 
     <label for="date">Date :</label>
-    <input type="date" id="date" name="date" required><br>
+    <input id="date" formControlName="date" type="date" required><br>
 
-    <button type="submit">Ajouter</button>
+    <button type="submit" [disabled]="fraisForm.invalid">Ajouter</button>
 </form>
+
+
+<script>
+    document.getElementById('fraisForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const libelle = document.getElementById('libelle').value;
+        const montant = document.getElementById('montant').value;
+        const date = document.getElementById('date').value;
+
+        const noteDeFrais = {
+            libelle: libelle,
+            montant: parseFloat(montant),
+            date: date
+        };
+
+        console.log('Nouvelle note de frais ajoutée:', noteDeFrais);
+
+        alert(`La note de frais "${libelle}" de ${montant}€ a été ajoutée avec succès !`);
+
+        document.getElementById('fraisForm').reset();
+    });
+</script>
 
 </body>
 </html>

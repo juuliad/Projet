@@ -19,8 +19,44 @@
     <input type="password" id="confirmPassword" name="confirmPassword" required><br>
 
     <button type="submit">S'inscrire</button>
+    <p class="login-link">Vous avez déjà un compte ? <br> <a href="..\connexion">Connectez-vous</a></p>
 </form>
 
-<script src="app.js"></script>
+<script>
+document.getElementById('signupForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+
+    if (password !== confirmPassword) {
+        alert('Les mots de passe ne correspondent pas.');
+        return;
+    }
+
+    const userData = {
+        username: username,
+        password: password
+    };
+
+    fetch('http://localhost:8080/api/signup', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert('Inscription réussie!');
+    })
+    .catch(error => {
+        console.error('Erreur:', error);
+        alert('Une erreur est survenue. Veuillez réessayer.');
+    });
+});
+</script>
+
 </body>
 </html>
