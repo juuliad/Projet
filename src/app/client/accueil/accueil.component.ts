@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AjouterComponent } from '../ajouter/ajouter.component';
 
 @Component({
   selector: 'app-accueil',
