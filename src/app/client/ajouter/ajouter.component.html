@@ -4,54 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajouter une note de frais</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
 
-  <nav>
+<nav>
     <ul>
-        <li><a routerLink="/accueil">Accueil</a></li>
-        <li><a routerLink="/connexion">Se connecter</a></li>
-        <li><a routerLink="/inscription">S'inscrire</a></li>
-        <li><a routerLink="/ajouter">Ajouter une note de frais</a></li>
-        <li><a routerLink="/consulter">Mes notes de frais</a></li>
+        <li><a href="../accueil">Accueil</a></li>
+        <li><a href="../consulter">Mes notes de frais</a></li>
+        <li><a href="../connexion">Se déconnecter</a></li>
     </ul>
 </nav>
 
-<h1>Ajouter une note de frais</h1>
+<div class="container mt-4">
+    <h1 class="text-center">Ajouter une note de frais</h1>
 
-<form [formGroup]="fraisForm" (ngSubmit)="onSubmit()">
-    <label for="libelle">Libellé :</label>
-    <input id="libelle" formControlName="libelle" required><br>
+    <form id="fraisForm" novalidate>
+        <div class="mb-3">
+            <label for="libelle" class="form-label">Libellé :</label>
+            <input id="libelle" name="libelle" class="form-control" placeholder="Entrez le libellé" required>
+        </div>
 
-    <label for="montant">Montant :</label>
-    <input id="montant" formControlName="montant" type="number" required><br>
+        <div class="mb-3">
+            <label for="montant" class="form-label">Montant :</label>
+            <input id="montant" name="montant" type="number" class="form-control" placeholder="Entrez le montant" required>
+        </div>
 
-    <label for="date">Date :</label>
-    <input id="date" formControlName="date" type="date" required><br>
+        <div class="mb-3">
+            <label for="date" class="form-label">Date :</label>
+            <input id="date" name="date" type="date" class="form-control" required>
+        </div>
 
-    <button type="submit" [disabled]="fraisForm.invalid">Ajouter</button>
-</form>
-
+        <button type="submit" class="btn btn-primary w-100">Ajouter</button>
+    </form>
+</div>
 
 <script>
-    document.getElementById('fraisForm').addEventListener('submit', function(event) {
+    document.getElementById('fraisForm').addEventListener('submit', async function(event) {
         event.preventDefault();
 
-        const libelle = document.getElementById('libelle').value;
-        const montant = document.getElementById('montant').value;
+        const libelle = document.getElementById('libelle').value.trim();
+        const montant = parseFloat(document.getElementById('montant').value);
         const date = document.getElementById('date').value;
 
-        const noteDeFrais = {
-            libelle: libelle,
-            montant: parseFloat(montant),
-            date: date
-        };
+        if (!libelle || isNaN(montant) || !date) {
+            alert('Tous les champs sont requis et doivent être valides.');
+            return;
+        }
 
-        console.log('Nouvelle note de frais ajoutée:', noteDeFrais);
+        const noteDeFrais = { libelle, montant, date };
 
-        alert(`La note de frais "${libelle}" de ${montant}€ a été ajoutée avec succès !`);
+        try {
+            const response = await fetch('http://localhost:3000/notes-de-frais', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(noteDeFrais)
+            });
 
-        document.getElementById('fraisForm').reset();
+            if (response.ok) {
+                const result = await response.json();
+                alert('Note de frais ajoutée avec succès !');
+                document.getElementById('fraisForm').reset();
+            } else {
+                alert('Erreur lors de l\'ajout de la note de frais.');
+            }
+        } catch (error) {
+            console.error('Erreur:', error);
+            alert('Une erreur est survenue.');
+        }
     });
 </script>
 

@@ -3,10 +3,9 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
-  margin: 0;
   font-family: Arial, sans-serif;
   background-image: url(./../../../public/img/vN2.jpg);
+  overflow-y: hidden;
 }
 
 /* Navbar */
@@ -80,30 +79,6 @@ nav ul li a:active {
   }
 }
 
-/* Blocs Ajouter et Consulter */
-/* Centrage de la page avec Flexbox */
-body {
-  display: flex;
-  justify-content: center; /* Centrer horizontalement */
-  align-items: center;     /* Centrer verticalement */
-  height: 100vh;           /* Prendre toute la hauteur de la fenêtre */
-  margin: 0;               /* Supprimer la marge par défaut */
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-}
-
-/* Style du bouton .bloc */
-/* Centrage de la page avec Flexbox */
-body {
-  display: flex;
-  justify-content: center; /* Centrer horizontalement */
-  align-items: center;     /* Centrer verticalement */
-  height: 100vh;           /* Prendre toute la hauteur de la fenêtre */
-  margin: 0;               /* Supprimer la marge par défaut */
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-}
-
 /* Style du bouton .bloc */
 .bloc {
   width: 220px;
@@ -138,4 +113,54 @@ body {
     width: 90%;
     max-width: 300px;
   }
+}
+
+.hero {
+  text-align: center;
+  margin-top: 120px;
+  color: #f0f0f0;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+}
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+.hero p {
+  font-size: 1.2rem;
+}
+.features {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 40px 0;
+  flex-wrap: wrap;
+}
+.feature-item {
+  text-align: center;
+  width: 280px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #333;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.feature-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+.feature-item h3 {
+  margin-bottom: 10px;
+}
+footer {
+  text-align: center;
+  background-color: #333;
+  color: white;
+}
+footer a {
+  color: lightblue;
+  text-decoration: none;
+}
+footer a:hover {
+  text-decoration: underline;
 }

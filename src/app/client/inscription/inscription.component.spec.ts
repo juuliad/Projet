@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { ReactiveFormsModule } from '@angular/forms';
 import { InscriptionComponent } from './inscription.component';
 
 describe('InscriptionComponent', () => {
@@ -8,7 +9,7 @@ describe('InscriptionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [InscriptionComponent]
+      imports: [InscriptionComponent, ReactiveFormsModule]
     })
     .compileComponents();
 
