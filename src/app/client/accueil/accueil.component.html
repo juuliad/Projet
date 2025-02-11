@@ -1,28 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blocs Ajouter et Consulter</title>
+    <title>Accueil - Notes de frais</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="accueil.component.css">
 </head>
 <body>
 
-    <nav>
-        <ul>
-            <li><a href="..\connexion">Se connecter</a></li>
-            <li><a href="..\inscription">S'inscrire</a></li>
-            <li><a href="..\ajouter">Ajouter une note de frais</a></li>
-            <li><a href="..\consulter">Mes notes de frais</a></li>
-        </ul>
-    </nav>
+    <!-- Section Hero -->
+    <header class="hero">
+        <h1>Bienvenue dans votre gestionnaire de notes de frais</h1>
+        <p>Une solution simple, rapide et efficace pour gérer vos dépenses professionnelles.</p>
+    </header>
 
-
+    <!-- Blocs Ajouter et Consulter -->
     <div class="container">
-        <a href="..\ajouter" class="bloc">Ajouter</a>
-        <a href="..\consulter" class="bloc">Consulter</a>
-        
-</div>
-    <script>
-    </script>
+        <a href="../ajouter" class="bloc">Ajouter</a>
+        <a href="../consulter" class="bloc">Consulter</a>
+    </div>
+
+    <!-- Section Fonctionnalités -->
+    <section class="features">
+        <div class="feature-item">
+            <h3>Rapidité</h3>
+            <p>Saisissez vos frais en quelques clics seulement. Plus besoin de formulaires papier.</p>
+        </div>
+        <div class="feature-item">
+            <h3>Accessibilité</h3>
+            <p>Consultez vos notes de frais où que vous soyez, depuis n'importe quel appareil.</p>
+        </div>
+        <div class="feature-item">
+            <h3>Sécurité</h3>
+            <p>Toutes vos données sont protégées avec des standards de sécurité modernes.</p>
+        </div>
+    </section>
 </body>
 </html>
