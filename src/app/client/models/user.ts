@@ -1,11 +1,11 @@
-export interface User{
+export interface FicheFrais {
+  id: number;
+  date: string;
+  montant: number;
+}
 
-  id?:number;
-
-  nom:string;
-  prenom:string;
-  adresse:string;
-  ville:string;
-  cp:string;
-// ajouter le role
+export interface Visiteur {
+  id: number;
+  login: string;
+  mdp: string;
 }

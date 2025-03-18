@@ -10,7 +10,9 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  login(credentials: { login: string, mdp: string }): Observable<any> {
-    return this.http.post<any>(this.apiUrl, credentials); // Requête POST pour envoyer les identifiants
+  // Dans le service
+  login(username: string, password: string): Observable<any> {
+    const body = { username, password };
+    return this.http.post(this.apiUrl, body);
   }
 }
