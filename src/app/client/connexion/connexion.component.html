@@ -1,38 +1,44 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit($event)">
-  <div class="form-group">
-    <label for="username">Nom d'utilisateur</label>
-    <input
-      id="username"
-      type="text"
-      class="form-control"
-      formControlName="username"
-      placeholder="Nom d'utilisateur"
-    />
-    <div ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" class="invalid-feedback">
-      Le nom d'utilisateur est requis.
+<div class="login-container">
+  <h2>Connexion</h2>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit($event)" class="needs-validation">
+
+    <div class="input-group">
+      <label for="username">Nom d'utilisateur</label>
+      <input
+        id="username"
+        type="text"
+        formControlName="username"
+        placeholder="Nom d'utilisateur"
+      />
+      <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" class="invalid-feedback">
+        Le nom d'utilisateur est requis.
+      </div>
     </div>
-  </div>
 
-  <div class="form-group">
-    <label for="password">Mot de passe</label>
-    <input
-      id="password"
-      type="password"
-      class="form-control"
-      formControlName="password"
-      placeholder="Mot de passe"
-    />
-    <div ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="invalid-feedback">
-      Le mot de passe est requis.
+    <div class="input-group">
+      <label for="password">Mot de passe</label>
+      <input
+        id="password"
+        type="password"
+        formControlName="password"
+        placeholder="Mot de passe"
+      />
+      <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="invalid-feedback">
+        Le mot de passe est requis.
+      </div>
     </div>
+
+    <button type="submit" class="submit-btn">Se connecter</button>
+
+     <!-- Message d'erreur -->
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
   </div>
 
-  <!-- Affichage d'erreurs sur le formulaire -->
-  <div *ngIf="loginForm.invalid" class="alert alert-danger">
-    Veuillez remplir tous les champs obligatoires.
-  </div>
+    <div class="forgot-password">
+      <a href="#">Mot de passe oublié ?</a>
+    </div>
 
-  <!-- Bouton de soumission -->
-  <button type="submit" class="btn btn-primary">Se connecter</button>
-</form>
-<p>julia</p>
+  </form>
+</div>

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router'; // Optionnel, si tu utilises le routage
+import { Router, RouterModule } from '@angular/router'; // Pour la redirection
 import { UserService } from '../service/user.service';
 
 @Component({
@@ -11,32 +11,37 @@ import { UserService } from '../service/user.service';
   templateUrl: './connexion.component.html',
   styleUrls: ['./connexion.component.css']
 })
-
 export class ConnexionComponent implements OnInit {
-  loginForm!: FormGroup;
+  loginForm!: FormGroup; // Formulaire réactif
+  isLoading: boolean = false; // Pour gérer l'état de chargement
+  errorMessage: string | null = null; // Pour afficher les messages d'erreur
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: UserService, // Injecte le service
-    private router: Router // Injecte le Router pour la redirection
+    private authService: UserService, // Service d'authentification
+    private router: Router // Router pour la redirection
   ) {}
 
   ngOnInit(): void {
     // Initialisation du formulaire réactif
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+      username: ['', [Validators.required]], // Champ obligatoire
+      password: ['', [Validators.required]] // Champ obligatoire
     });
   }
 
   onSubmit(event: Event): void {
     event.preventDefault(); // Empêche le rechargement de la page
 
+    // Si le formulaire est invalide, on affiche les erreurs
     if (this.loginForm.invalid) {
-      // Marque tous les champs comme touchés pour afficher les messages d'erreur
       this.loginForm.markAllAsTouched();
       return;
     }
+
+    // Active l'état de chargement
+    this.isLoading = true;
+    this.errorMessage = null;
 
     // Récupère les valeurs du formulaire
     const username = this.loginForm.get('username')?.value || '';
@@ -45,15 +50,17 @@ export class ConnexionComponent implements OnInit {
     // Appelle le service d'authentification
     this.authService.login(username, password).subscribe({
       next: (response) => {
-        console.log('Connexion réussie:', response);
-        // Redirige l'utilisateur après une connexion réussie
-        this.router.navigate(['/dashboard']); // Remplace '/dashboard' par la route souhaitée
+        if (response === 'Connexion réussie') {
+          console.log('Connexion réussie');
+          this.router.navigate(['/dashboard']); // Redirige vers /dashboard
+        } else {
+          console.error('Identifiants incorrects:', response);
+          alert('Nom d\'utilisateur ou mot de passe incorrect.');
+        }
       },
       error: (error) => {
         console.error('Erreur de connexion:', error);
-        // Affiche un message d'erreur à l'utilisateur
-        alert('Nom d\'utilisateur ou mot de passe incorrect.');
+        alert('Une erreur s\'est produite lors de la connexion.');
       }
     });
-  }
-}
+}}
