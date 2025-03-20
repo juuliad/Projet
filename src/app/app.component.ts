@@ -1,19 +1,17 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { AccueilComponent } from './client/accueil/accueil.component';
-import { ConnexionComponent } from './client/connexion/connexion.component';
-import { ConsulterComponent } from './client/consulter/consulter.component';
-import { AjouterComponent } from './client/ajouter/ajouter.component';
-import { InscriptionComponent } from './client/inscription/inscription.component';
 
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, AjouterComponent, ConsulterComponent, ConnexionComponent, InscriptionComponent, AccueilComponent],
+  imports: [RouterOutlet, ReactiveFormsModule, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
+
 export class AppComponent {
   title = 'NoteFrais';
 }

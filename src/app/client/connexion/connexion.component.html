@@ -1,30 +1,44 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Page de Connexion</title>
-</head>
+<div class="login-container">
+  <h2>Connexion</h2>
 
-<body>
-  <div class="login-container">
-    <h2>Se connecter</h2>
-    <form id="loginForm">
-      <div class="input-group">
-        <label for="username">Nom d'utilisateur</label>
-        <input type="text" id="username" name="username" placeholder="Entrez votre nom d'utilisateur" required>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit($event)" class="needs-validation">
+
+    <div class="input-group">
+      <label for="username">Nom d'utilisateur</label>
+      <input
+        id="username"
+        type="text"
+        formControlName="username"
+        placeholder="Nom d'utilisateur"
+      />
+      <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" class="invalid-feedback">
+        Le nom d'utilisateur est requis.
       </div>
-      <div class="input-group">
-        <label for="password">Mot de passe</label>
-        <input type="password" id="password" name="password" placeholder="Entrez votre mot de passe" required>
+    </div>
+
+    <div class="input-group">
+      <label for="password">Mot de passe</label>
+      <input
+        id="password"
+        type="password"
+        formControlName="password"
+        placeholder="Mot de passe"
+      />
+      <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="invalid-feedback">
+        Le mot de passe est requis.
       </div>
-      <button type="submit" class="submit-btn">Se connecter</button>
-    </form>
+    </div>
+
+    <button type="submit" class="submit-btn">Se connecter</button>
+
+    <!-- Message d'erreur -->
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
     <div class="forgot-password">
       <a href="#">Mot de passe oublié ?</a>
-      <p class="login-link">Pas de compte ? <a href="..\inscription">Inscrivez-vous</a></p>
     </div>
-  </div>
 
-</body>
-</html>
+  </form>
+</div>
