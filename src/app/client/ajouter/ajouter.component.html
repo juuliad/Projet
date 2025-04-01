@@ -9,29 +9,37 @@
 
     <nav>
         <ul>
-            <li><a href="..\accueil">Accueil</a></li>
-            <li><a href="..\consulter">Mes notes de frais</a></li>
-            <li><a href="..\connexion">Déconnecter</a></li> 
+          <li><a routerLink="/dashboard">Accueil</a></li>
+          <li><a routerLink="/consulter">Mes notes de frais</a></li>
+          <li><a routerLink="/connexion">Déconnecter</a></li>
         </ul>
-    </nav>
-
-    <h1>Ajouter une note de frais</h1>
-    <form id="fraisForm">
-        <label for="mois">Date :</label>
-        <input type="date" id="mois" name="mois" required><br>
-    
-        <label for="nbJustificatifs">Nombre de justificatifs :</label>
-        <input type="number" id="nbJustificatifs" name="nbJustificatifs" required><br>
-    
-        <label for="montantValide">Montant valide :</label>
-        <input type="number" id="montantValide" name="montantValide" required><br>
-    
-        <label for="dateModif">Date de modification :</label>
-        <input type="date" id="dateModif" name="dateModif" required><br>
-    
+      </nav>
+      
+      <h1>Ajouter une note de frais</h1>
+      
+      <form (ngSubmit)="onSubmit()">
+        <div>
+          <label for="mois">Mois :</label>
+          <select id="mois" name="mois" [(ngModel)]="fiche.mois">
+            <option *ngFor="let mois of moisDisponibles" [value]="mois">{{ mois }}</option>
+          </select>
+        </div>
+        
+        <div>
+          <label for="nbJustificatifs">Nombre de justificatifs :</label>
+          <input type="number" id="nbJustificatifs" name="nbJustificatifs" [(ngModel)]="fiche.nbJustificatifs" required>
+        </div>
+        
+        <div>
+          <label for="montantValide">Montant valide :</label>
+          <input type="number" id="montantValide" name="montantValide" [(ngModel)]="fiche.montantValide" required>
+        </div>
+        
+        <div>
+          <label for="dateModif">Date de modification :</label>
+          <input type="date" id="dateModif" name="dateModif" [(ngModel)]="fiche.dateModif" required>
+        </div>
+        
         <button type="submit">Ajouter</button>
-    </form>
-
-    <script src="app.js"></script>
-</body>
-</html>
+      </form>
+      </body>

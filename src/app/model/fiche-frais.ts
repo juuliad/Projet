@@ -1,20 +1,17 @@
-import { Visiteur } from './visiteur'; // Assure-toi d'importer Visiteur ici
-
-export interface Etat {
+export interface Visiteur {
   id: number;
-  libelle: string;
+login: string;
+mdp: string;
+fichesFrais?: FicheFrais[];
 }
 
 export interface FicheFrais {
-  id: number;
-  nom: string;
-  mois: string;
-  nbJustificatifs: number;
-  montantvalide: number;
-  date: string;
-  description: string;
-  visiteur: Visiteur;  // Associer un Visiteur à chaque Fiche de Frais
-  etat: Etat;
-  ligneFraisForfaits: any[];
-  ligneFraisHorsForfaits: any[];
+    id?: number;
+    mois: string;
+    nbJustificatifs: number;
+    montantValide: number;
+    dateModif: string;
+    visiteur?: Visiteur;  // Propriété rendue optionnelle pour éviter l'erreur
+    ligneFraisForfaits?: any[];  
+    ligneFraisHorsForfaits?: any[];
 }

@@ -34,4 +34,5 @@ export class VisiteurService {
     const url = `${this.apiURL}/delete/${id}`;
     return this.http.delete<void>(url);
   }
+  
 }

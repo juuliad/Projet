@@ -49,12 +49,13 @@ export class ConnexionComponent implements OnInit {
 
     // Appelle le service d'authentification
     this.authService.login(username, password).subscribe({
-      next: (response) => {
-        if (response === 'Connexion réussie') {
-          console.log('Connexion réussie');
+      next: (visiteur) => {
+        if (visiteur) {
+          this.authService.setVisiteurConnecte(visiteur);
+          console.log('Connexion réussie', this.authService.getVisiteurConnecte());
           this.router.navigate(['/dashboard']); // Redirige vers /dashboard
         } else {
-          console.error('Identifiants incorrects:', response);
+          console.error('Identifiants incorrects:', visiteur);
           alert('Nom d\'utilisateur ou mot de passe incorrect.');
         }
       },
