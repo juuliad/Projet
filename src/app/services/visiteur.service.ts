@@ -8,7 +8,7 @@ import { Visiteur } from '../model/visiteur';
 })
 export class VisiteurService {
 
-  private apiURL = 'http://localhost:8080/api/visiteur'; // Ton URL d'API
+  private apiURL = 'http://localhost:8080/api/visiteurs';
 
   constructor(private http: HttpClient) {}
 
@@ -34,5 +34,5 @@ export class VisiteurService {
     const url = `${this.apiURL}/delete/${id}`;
     return this.http.delete<void>(url);
   }
-  
+
 }
