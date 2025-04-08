@@ -39,4 +39,8 @@ export class FicheFraisService {
     const url = `${this.apiURL}/${id}`;
     return this.http.put<FicheFrais>(url, fiche, httpOptions);
   }
+
+  getFichesByVisiteurId(visiteurId: number) {
+    return this.http.get<FicheFrais[]>(`http://localhost:8080/api/ficheFrais/visiteur/${visiteurId}`);
+  }
 }

@@ -11,14 +11,34 @@
     <ul>
         <li><a href="..\dashboard">Accueil</a></li>
         <li><a href="..\ajouter">Ajouter une note de frais</a></li>
-        <li><a href="/connexion">Déconnecter</a></li>        
+        <li><a href="/connexion">Déconnecter</a></li>
     </ul>
 </nav>
-
 <h1>Mes notes de frais</h1>
 
-<p>Aucune note de frais enregistrée pour l'instant.</p>
+<div *ngIf="isLoading">Chargement des fiches...</div>
 
-<script src="app.js"></script>
+<div *ngIf="!isLoading && fiches.length === 0">
+  <p>Aucune note de frais enregistrée pour l'instant.</p>
+</div>
+
+<table *ngIf="!isLoading && fiches.length > 0">
+  <thead>
+    <tr>
+      <th>Mois</th>
+      <th>Montant validé</th>
+      <th>Nombre de justificatifs</th>
+      <th>Date de modification</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let fiche of fiches">
+      <td>{{ fiche.mois }}</td>
+      <td>{{ fiche.montantValide }} €</td>
+      <td>{{ fiche.nbJustificatifs }}</td>
+      <td>{{ fiche.dateModif | date: 'dd/MM/yyyy' }}</td>
+    </tr>
+  </tbody>
+</table>
 </body>
 </html>
