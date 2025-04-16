@@ -12,6 +12,6 @@ export interface FicheFrais {
     montantValide: number;
     dateModif: string;
     visiteur?: Visiteur;  // Propriété rendue optionnelle pour éviter l'erreur
-    ligneFraisForfaits?: any[];  
+    ligneFraisForfaits?: any[];
     ligneFraisHorsForfaits?: any[];
 }

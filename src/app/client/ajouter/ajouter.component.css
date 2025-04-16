@@ -1,46 +1,70 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
+    margin: -8px;
 }
+
 
 h1 {
     text-align: center;
-    margin-top: 50px;
 }
 
 p {
     text-align: center;
 }
-
 form {
-    width: 300px;
-    margin: 0 auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  width: 350px;
+  margin: 40px auto;
+  padding: 25px 30px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
 }
 
-label, input {
-    display: block;
-    width: 100%;
-    margin-bottom: 10px;
+form:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+  color: #333;
+  font-size: 14px;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px 0px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  font-size: 15px;
+  transition: border-color 0.2s ease;
+}
+
+input:focus, select:focus {
+  border-color: lightskyblue;
+  outline: none;
+  background-color: #fff;
 }
 
 button {
-    width: 100%;
-    padding: 10px;
-    background-color: lightgrey;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  width: 100%;
+  padding: 12px;
+  background-color: lightgrey;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: lightskyblue;
+  background-color: lightskyblue;
 }
 
 /* NavBar */
@@ -50,7 +74,7 @@ nav {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     font-family: Arial, sans-serif;
   }
-  
+
   nav ul {
     list-style: none;
     margin: 0;
@@ -58,11 +82,11 @@ nav {
     display: flex;
     justify-content: center;
   }
-  
+
   nav ul li {
     margin: 0 20px;
   }
-  
+
   nav ul li a {
     text-decoration: none;
     color: #f0f0f0;
@@ -72,12 +96,12 @@ nav {
     border-radius: 6px;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
-  
+
   nav ul li a:hover {
     background-color: lightblue;
     color: #000;
   }
-  
+
   nav ul li a:active {
     background-color: #555;
     color: #fff;

@@ -25,13 +25,13 @@ export class AjouterComponent implements OnInit, OnDestroy {
       login: '',
       mdp: ''
     }
-    
+
   };
 
   // Liste statique des mois en français
   moisDisponibles: string[] = [
-    'Janvier', 'Février', 'Mars', 'Avril', 
-    'Mai', 'Juin', 'Juillet', 'Août', 
+    'Janvier', 'Février', 'Mars', 'Avril',
+    'Mai', 'Juin', 'Juillet', 'Août',
     'Septembre', 'Octobre', 'Novembre', 'Décembre'
   ];
 
@@ -83,7 +83,7 @@ export class AjouterComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     this.isLoading = true;
     console.log('Envoi de la fiche:', this.fiche);
-    
+
     this.ficheFraisService.ajouterFicheFrais(this.fiche).subscribe({
       next: (response) => {
         this.isLoading = false;

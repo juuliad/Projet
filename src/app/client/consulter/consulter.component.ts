@@ -63,4 +63,41 @@ export class ConsulterComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+
+  // Fonctions supprimer et modifier
+  modifierFiche(fiche: FicheFrais): void {
+    const nouveauMontant = prompt("Nouveau montant validé :", fiche.montantValide.toString());
+    const nouveauNbJustificatifs = prompt("Nouveau nombre de justificatifs :", fiche.nbJustificatifs.toString());
+
+    if (nouveauMontant !== null && nouveauNbJustificatifs !== null) {
+      const updatedFiche = {
+        ...fiche,
+        montantValide: parseFloat(nouveauMontant),
+        nbJustificatifs: parseInt(nouveauNbJustificatifs),
+        dateModif: new Date().toISOString().split('T')[0]
+      };
+
+      if (fiche.id !== undefined) {
+        this.ficheFraisService.updateFicheFrais(fiche.id, updatedFiche).subscribe({
+          next: () => {
+            if (fiche.visiteur?.id !== undefined) {
+              this.loadFiches(fiche.visiteur.id);
+            }
+          },
+          error: (err: any) => alert("Erreur lors de la mise à jour : " + err.message)
+        });
+      }
+    }
+  }
+
+  supprimerFiche(id: number): void {
+    if (confirm("Confirmer la suppression de cette fiche ?")) {
+      this.ficheFraisService.deleteFicheFrais(id).subscribe({
+        next: () => this.fiches = this.fiches.filter(f => f.id !== id),
+        error: (err) => alert("Erreur lors de la suppression : " + err.message)
+      });
+    }
+  }
+
 }

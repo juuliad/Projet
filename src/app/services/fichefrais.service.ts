@@ -23,6 +23,10 @@ export class FicheFraisService {
     const url = `${this.apiURL}/visiteur/${visiteurId}`;
     return this.http.get<FicheFrais[]>(url);
   }
+  getFicheFraisById(id: number): Observable<FicheFrais> {
+    return this.http.get<FicheFrais>(`${this.apiURL}/${id}`);
+  }
+
   // Ajouter une nouvelle fiche de frais
   ajouterFicheFrais(fiche: FicheFrais): Observable<FicheFrais> {
     const finalFicheFrais=JSON.stringify(fiche);
@@ -43,4 +47,9 @@ export class FicheFraisService {
   getFichesByVisiteurId(visiteurId: number) {
     return this.http.get<FicheFrais[]>(`http://localhost:8080/api/ficheFrais/visiteur/${visiteurId}`);
   }
+
+  deleteFicheFrais(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiURL}/${id}`);
+  }
+
 }

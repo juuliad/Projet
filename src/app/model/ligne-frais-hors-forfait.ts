@@ -1,6 +1,6 @@
 export interface LigneFraisHorsForfait {
-    id: number;
-    date: Date;
-    montant: number;
-    libelle: string;
+  id?: number;
+  date: string;
+  montant: number;
+  libelle: string;
 }

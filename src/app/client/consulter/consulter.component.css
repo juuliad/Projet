@@ -1,8 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
+    margin: -8px;
 }
 
 h1 {
@@ -14,13 +12,44 @@ p {
     text-align: center;
 }
 
-form {
-    width: 300px;
-    margin: 0 auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+table {
+  width: 80%;
+  margin: 40px auto;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 16px;
+}
+
+th, td {
+  padding: 15px 20px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #646161;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+td {
+  color: #333;
+}
+
+caption {
+  caption-side: top;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 label, input {
@@ -51,7 +80,7 @@ nav {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     font-family: Arial, sans-serif;
   }
-  
+
   nav ul {
     list-style: none;
     margin: 0;
@@ -59,11 +88,11 @@ nav {
     display: flex;
     justify-content: center;
   }
-  
+
   nav ul li {
     margin: 0 20px;
   }
-  
+
   nav ul li a {
     text-decoration: none;
     color: #f0f0f0;
@@ -73,12 +102,12 @@ nav {
     border-radius: 6px;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
-  
+
   nav ul li a:hover {
     background-color: lightblue;
     color: #000;
   }
-  
+
   nav ul li a:active {
     background-color: #555;
     color: #fff;

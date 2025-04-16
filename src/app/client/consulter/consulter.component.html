@@ -29,6 +29,7 @@
       <th>Montant validé</th>
       <th>Nombre de justificatifs</th>
       <th>Date de modification</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -37,8 +38,13 @@
       <td>{{ fiche.montantValide }} €</td>
       <td>{{ fiche.nbJustificatifs }}</td>
       <td>{{ fiche.dateModif | date: 'dd/MM/yyyy' }}</td>
+      <td>
+        <button (click)="modifierFiche(fiche)">Modifier</button>
+        <button *ngIf="fiche.id !== undefined" (click)="supprimerFiche(fiche.id!)">Supprimer</button>
+      </td>
     </tr>
   </tbody>
+
 </table>
 </body>
 </html>
